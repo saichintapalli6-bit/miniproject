@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Realestate Price Predictor</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 { color: #1e293b; margin-bottom: 20px; }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #1e293b;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+        .search-input {
+            position: relative;
+        }
+        .search-input input {
+            padding-right: 40px;
+        }
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+        }
+        .suggestions {
+            position: absolute;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            width: 100%;
+            z-index: 1000;
+            display: none;
+            margin-top: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .suggestion-item {
+            padding: 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .suggestion-item:hover {
+            background: #f8fafc;
+        }
+        .suggestion-item strong {
+            color: #1e293b;
+        }
+        .suggestion-item small {
+            color: #64748b;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #1e40af;
+        }
+        .btn-secondary {
+            background: #64748b;
+            color: white;
+        }
+        .result {
+            background: #f0fdf4;
+            border: 2px solid #10b981;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+        .result h3 {
+            color: #10b981;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 32px;
+            font-weight: bold;
+            color: #059669;
+        }
+        .location-info {
+            background: #eff6ff;
+            border: 1px solid #3b82f6;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+        }
+        .logout {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>🏡 Realestate Price Predictor</h1>
+                <p>Welcome, {{ user_name }}!</p>
+            </div>
+            <a href="/logout" class="logout">Logout</a>
+        </div>
+
+        <div class="card">
+            <h2>Predict Land Price</h2>
+
+            <form id="predictForm">
+                <div class="form-group">
+                    <label>State</label>
+                    <select id="state" required>
+                        <option value="">Select State</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Telangana">Telangana</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="West Bengal">West Bengal</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>🔍 Search Location (City/Village/Town/Area)</label>
+                    <div class="search-input">
+                        <input type="text" id="locationSearch" placeholder="Type to search: Narsapuram, Bhimavaram, Visakhapatnam..." autocomplete="off">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    <div id="suggestions" class="suggestions"></div>
+                    <input type="hidden" id="selectedLocation" required>
+                </div>
+
+                <div class="location-info" id="locationInfo">
+                    <strong>Selected:</strong> <span id="selectedLocationText"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Square Feet</label>
+                    <input type="number" id="sqft" min="100" value="1000" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Distance to Main Road (km)</label>
+                    <input type="number" id="mainRoadDistance" step="0.1" min="0" value="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Soil Type</label>
+                    <select id="soilType" required>
+                        <option value="Alluvial">Alluvial (Best for Agriculture)</option>
+                        <option value="Black">Black (Cotton Soil)</option>
+                        <option value="Red">Red (Common Soil)</option>
+                        <option value="Laterite">Laterite</option>
+                        <option value="Desert">Desert</option>
+                        <option value="Mountain">Mountain</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Underground Water Level (feet)</label>
+                    <input type="number" id="waterLevel" min="1" value="100" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Latitude (Auto-filled when you select location)</label>
+                    <input type="number" id="latitude" step="0.0001" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Longitude (Auto-filled when you select location)</label>
+                    <input type="number" id="longitude" step="0.0001" required>
+                </div>
+
+                <button type="button" class="btn btn-secondary" onclick="getCurrentLocation()">📍 Get My Current Location</button>
+                <button type="submit" class="btn btn-primary">💰 Predict Price</button>
+            </form>
+
+            <div id="result" class="result">
+                <h3>✅ Predicted Land Price</h3>
+                <div class="price" id="predictedPrice">₹0</div>
+                <p>Price per sqft: ₹<span id="pricePerSqft">0</span></p>
+                <p style="margin-top: 10px; color: #64748b; font-size: 14px;">
+                    📍 Location: <span id="resultLocation"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Comprehensive location database - Andhra Pradesh with West & East Godavari districts
+        const locationDatabase = {
+            'Andhra Pradesh': [
+                // Major Cities
+                {name: 'Visakhapatnam', lat: 17.6868, lng: 83.2185, type: 'Major City', district: 'Visakhapatnam'},
+                {name: 'Vijayawada', lat: 16.5062, lng: 80.6480, type: 'Major City', district: 'Krishna'},
+                {name: 'Guntur', lat: 16.3067, lng: 80.4365, type: 'City', district: 'Guntur'},
+                {name: 'Tirupati', lat: 13.6288, lng: 79.4192, type: 'City', district: 'Chittoor'},
+                {name: 'Kakinada', lat: 16.9891, lng: 82.2475, type: 'City', district: 'East Godavari'},
+                {name: 'Nellore', lat: 14.4426, lng: 79.9865, type: 'City', district: 'Nellore'},
+                {name: 'Kurnool', lat: 15.8281, lng: 78.0373, type: 'City', district: 'Kurnool'},
+                {name: 'Rajahmundry', lat: 17.0005, lng: 81.8040, type: 'City', district: 'East Godavari'},
+
+                // West Godavari District - All Major Towns
+                {name: 'Bhimavaram', lat: 16.5449, lng: 81.5212, type: 'Town', district: 'West Godavari'},
+                {name: 'Eluru', lat: 16.7107, lng: 81.0952, type: 'Town', district: 'West Godavari'},
+                {name: 'Tadepalligudem', lat: 16.8150, lng: 81.5270, type: 'Town', district: 'West Godavari'},
+                {name: 'Tanuku', lat: 16.7547, lng: 81.6808, type: 'Town', district: 'West Godavari'},
+                {name: 'Narsapuram', lat: 16.4344, lng: 81.6989, type: 'Town', district: 'West Godavari'},
+                {name: 'Palakollu', lat: 16.5167, lng: 81.7333, type: 'Town', district: 'West Godavari'},
+                {name: 'Narasapuram', lat: 16.4344, lng: 81.6989, type: 'Town', district: 'West Godavari'},
+                {name: 'Kovvur', lat: 17.0167, lng: 81.7333, type: 'Town', district: 'West Godavari'},
+                {name: 'Jangareddygudem', lat: 17.1247, lng: 81.7378, type: 'Town', district: 'West Godavari'},
+
+                // West Godavari - Villages and Small Towns
+                {name: 'Mogalturu', lat: 16.5667, lng: 81.6333, type: 'Village', district: 'West Godavari'},
+                {name: 'Mogultur', lat: 16.5667, lng: 81.6333, type: 'Village', district: 'West Godavari'},
+                {name: 'Seetharamapuram', lat: 16.4500, lng: 81.7000, type: 'Village', district: 'West Godavari'},
+                {name: 'Veeravasaram', lat: 16.4833, lng: 81.7167, type: 'Village', district: 'West Godavari'},
+                {name: 'Akividu', lat: 16.5833, lng: 81.3833, type: 'Village', district: 'West Godavari'},
+                {name: 'Undi', lat: 16.5167, lng: 81.4333, type: 'Village', district: 'West Godavari'},
+                {name: 'Penugonda', lat: 16.6547, lng: 81.7444, type: 'Village', district: 'West Godavari'},
+                {name: 'Achanta', lat: 16.5000, lng: 81.5000, type: 'Village', district: 'West Godavari'},
+                {name: 'Poduru', lat: 16.6000, lng: 81.5500, type: 'Village', district: 'West Godavari'},
+                {name: 'Attili', lat: 16.7000, lng: 81.6000, type: 'Village', district: 'West Godavari'},
+                {name: 'Dwaraka Tirumala', lat: 16.8167, lng: 81.4667, type: 'Village', district: 'West Godavari'},
+                {name: 'Undrajavaram', lat: 16.9667, lng: 81.6833, type: 'Village', district: 'West Godavari'},
+                {name: 'Polavaram', lat: 17.2500, lng: 81.6500, type: 'Village', district: 'West Godavari'},
+                {name: 'Buttayagudem', lat: 17.2000, lng: 81.3000, type: 'Village', district: 'West Godavari'},
+                {name: 'Chintalapudi', lat: 17.0833, lng: 81.1167, type: 'Village', district: 'West Godavari'},
+
+                // East Godavari District
+                {name: 'Amalapuram', lat: 16.5833, lng: 82.0167, type: 'Town', district: 'East Godavari'},
+                {name: 'Ramachandrapuram', lat: 16.8333, lng: 82.0333, type: 'Town', district: 'East Godavari'},
+                {name: 'Mandapeta', lat: 16.8667, lng: 81.9333, type: 'Town', district: 'East Godavari'},
+                {name: 'Ravulapalem', lat: 17.0000, lng: 81.8333, type: 'Town', district: 'East Godavari'},
+                {name: 'Tuni', lat: 17.3500, lng: 82.5500, type: 'Town', district: 'East Godavari'},
+                {name: 'Peddapuram', lat: 17.0833, lng: 82.1500, type: 'Town', district: 'East Godavari'},
+                {name: 'Samalkot', lat: 17.0500, lng: 82.1667, type: 'Town', district: 'East Godavari'},
+                {name: 'Annavaram', lat: 17.2667, lng: 82.1000, type: 'Village', district: 'East Godavari'},
+                {name: 'Pithapuram', lat: 17.1167, lng: 82.2500, type: 'Town', district: 'East Godavari'},
+                {name: 'Prathipadu', lat: 16.9833, lng: 81.8500, type: 'Village', district: 'East Godavari'},
+                {name: 'Razole', lat: 16.4667, lng: 81.8333, type: 'Village', district: 'East Godavari'},
+                {name: 'Mummidivaram', lat: 16.6500, lng: 82.1167, type: 'Village', district: 'East Godavari'},
+                {name: 'Uppada', lat: 17.0833, lng: 82.3333, type: 'Village', district: 'East Godavari'},
+                {name: 'Kothapeta', lat: 16.7833, lng: 82.0000, type: 'Village', district: 'East Godavari'},
+                {name: 'Addateegala', lat: 16.8167, lng: 81.8833, type: 'Village', district: 'East Godavari'},
+
+                // Other Districts
+                {name: 'Kadapa', lat: 14.4673, lng: 78.8242, type: 'City', district: 'Kadapa'},
+                {name: 'Anantapur', lat: 14.6819, lng: 77.6006, type: 'City', district: 'Anantapur'},
+                {name: 'Ongole', lat: 15.5057, lng: 80.0499, type: 'Town', district: 'Prakasam'},
+                {name: 'Nandyal', lat: 15.4777, lng: 78.4836, type: 'Town', district: 'Kurnool'},
+                {name: 'Machilipatnam', lat: 16.1875, lng: 81.1389, type: 'Town', district: 'Krishna'},
+                {name: 'Tenali', lat: 16.2428, lng: 80.6514, type: 'Town', district: 'Guntur'},
+                {name: 'Chirala', lat: 15.8239, lng: 80.3522, type: 'Town', district: 'Prakasam'},
+                {name: 'Proddatur', lat: 14.7502, lng: 78.5482, type: 'Town', district: 'Kadapa'}
+            ],
+            'Maharashtra': [
+                {name: 'Mumbai', lat: 19.0760, lng: 72.8777, type: 'Metro City'},
+                {name: 'Pune', lat: 18.5204, lng: 73.8567, type: 'Major City'},
+                {name: 'Nagpur', lat: 21.1458, lng: 79.0882, type: 'Major City'},
+                {name: 'Nashik', lat: 19.9975, lng: 73.7898, type: 'City'},
+                {name: 'Aurangabad', lat: 19.8762, lng: 75.3433, type: 'City'}
+            ],
+            'Karnataka': [
+                {name: 'Bangalore', lat: 12.9716, lng: 77.5946, type: 'Metro City'},
+                {name: 'Mysore', lat: 12.2958, lng: 76.6394, type: 'City'},
+                {name: 'Mangalore', lat: 12.9141, lng: 74.8560, type: 'City'},
+                {name: 'Hubli', lat: 15.3647, lng: 75.1240, type: 'City'}
+            ],
+            'Tamil Nadu': [
+                {name: 'Chennai', lat: 13.0827, lng: 80.2707, type: 'Metro City'},
+                {name: 'Coimbatore', lat: 11.0168, lng: 76.9558, type: 'Major City'},
+                {name: 'Madurai', lat: 9.9252, lng: 78.1198, type: 'City'}
+            ],
+            'Telangana': [
+                {name: 'Hyderabad', lat: 17.3850, lng: 78.4867, type: 'Metro City'},
+                {name: 'Warangal', lat: 17.9689, lng: 79.5941, type: 'City'},
+                {name: 'Nizamabad', lat: 18.6725, lng: 78.0941, type: 'City'}
+            ],
+            'Gujarat': [
+                {name: 'Ahmedabad', lat: 23.0225, lng: 72.5714, type: 'Major City'},
+                {name: 'Surat', lat: 21.1702, lng: 72.8311, type: 'Major City'},
+                {name: 'Vadodara', lat: 22.3072, lng: 73.1812, type: 'City'}
+            ],
+            'Rajasthan': [
+                {name: 'Jaipur', lat: 26.9124, lng: 75.7873, type: 'Major City'},
+                {name: 'Jodhpur', lat: 26.2389, lng: 73.0243, type: 'City'},
+                {name: 'Udaipur', lat: 24.5854, lng: 73.7125, type: 'City'}
+            ],
+            'Uttar Pradesh': [
+                {name: 'Lucknow', lat: 26.8467, lng: 80.9462, type: 'Major City'},
+                {name: 'Kanpur', lat: 26.4499, lng: 80.3319, type: 'Major City'},
+                {name: 'Agra', lat: 27.1767, lng: 78.0081, type: 'City'}
+            ],
+            'West Bengal': [
+                {name: 'Kolkata', lat: 22.5726, lng: 88.3639, type: 'Metro City'},
+                {name: 'Howrah', lat: 22.5958, lng: 88.2636, type: 'City'},
+                {name: 'Durgapur', lat: 23.5204, lng: 87.3119, type: 'City'}
+            ],
+            'Kerala': [
+                {name: 'Kochi', lat: 9.9312, lng: 76.2673, type: 'Major City'},
+                {name: 'Thiruvananthapuram', lat: 8.5241, lng: 76.9366, type: 'City'},
+                {name: 'Kozhikode', lat: 11.2588, lng: 75.7804, type: 'City'}
+            ],
+            'Madhya Pradesh': [
+                {name: 'Bhopal', lat: 23.2599, lng: 77.4126, type: 'Major City'},
+                {name: 'Indore', lat: 22.7196, lng: 75.8577, type: 'Major City'},
+                {name: 'Jabalpur', lat: 23.1815, lng: 79.9864, type: 'City'}
+            ]
+        };
+
+        let allLocations = [];
+
+        // Flatten all locations into searchable array
+        for (const [state, locations] of Object.entries(locationDatabase)) {
+            locations.forEach(loc => {
+                allLocations.push({
+                    ...loc,
+                    state: state,
+                    fullName: `${loc.name}, ${loc.district || state}`,
+                    searchText: `${loc.name} ${loc.district || ''} ${state}`.toLowerCase()
+                });
+            });
+        }
+
+        console.log(`Loaded ${allLocations.length} locations!`);
+
+        // Search functionality
+        const searchInput = document.getElementById('locationSearch');
+        const suggestionsDiv = document.getElementById('suggestions');
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+
+            if (query.length < 2) {
+                suggestionsDiv.style.display = 'none';
+                return;
+            }
+
+            // Filter locations
+            const filtered = allLocations.filter(loc => 
+                loc.searchText.includes(query)
+            );
+
+            if (filtered.length > 0) {
+                suggestionsDiv.innerHTML = filtered.slice(0, 15).map(loc => `
+                    <div class="suggestion-item" onclick='selectLocation(${JSON.stringify(loc.name)}, ${JSON.stringify(loc.state)}, ${loc.lat}, ${loc.lng}, ${JSON.stringify(loc.type)}, ${JSON.stringify(loc.district || loc.state)})'>
+                        <strong>${loc.name}</strong>, ${loc.district || loc.state}
+                        <br><small>${loc.type} · ${loc.state}</small>
+                    </div>
+                `).join('');
+                suggestionsDiv.style.display = 'block';
+            } else {
+                suggestionsDiv.innerHTML = '<div class="suggestion-item">No locations found. Try different spelling or enter coordinates manually.</div>';
+                suggestionsDiv.style.display = 'block';
+            }
+        });
+
+        function selectLocation(name, state, lat, lng, type, district) {
+            document.getElementById('locationSearch').value = name;
+            document.getElementById('selectedLocation').value = `${name}, ${district}`;
+            document.getElementById('state').value = state;
+            document.getElementById('latitude').value = lat;
+            document.getElementById('longitude').value = lng;
+            document.getElementById('selectedLocationText').textContent = `${name}, ${district} (${type})`;
+            document.getElementById('locationInfo').style.display = 'block';
+            suggestionsDiv.style.display = 'none';
+        }
+
+        // Close suggestions when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-input')) {
+                suggestionsDiv.style.display = 'none';
+            }
+        });
+
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    document.getElementById('latitude').value = position.coords.latitude.toFixed(4);
+                    document.getElementById('longitude').value = position.coords.longitude.toFixed(4);
+                    alert('✅ Current location detected successfully!');
+                }, error => {
+                    alert('❌ Unable to get location. Please search for a location or enter coordinates manually.');
+                });
+            } else {
+                alert('❌ Geolocation not supported by your browser');
+            }
+        }
+
+        document.getElementById('predictForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const selectedLoc = document.getElementById('selectedLocation').value || 
+                               document.getElementById('locationSearch').value || 
+                               'Custom Location';
+
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    state: document.getElementById('state').value,
+                    city: selectedLoc,
+                    sqft: document.getElementById('sqft').value,
+                    mainRoadDistance: document.getElementById('mainRoadDistance').value,
+                    soilType: document.getElementById('soilType').value,
+                    waterLevel: document.getElementById('waterLevel').value,
+                    latitude: document.getElementById('latitude').value,
+                    longitude: document.getElementById('longitude').value
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                document.getElementById('predictedPrice').textContent = '₹' + data.predictedPrice.toLocaleString('en-IN');
+                document.getElementById('pricePerSqft').textContent = data.pricePerSqft.toLocaleString('en-IN');
+                document.getElementById('resultLocation').textContent = selectedLoc;
+                document.getElementById('result').style.display = 'block';
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            } else {
+                alert(data.message || 'Error predicting price. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>
