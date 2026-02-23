@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Real Estate Land Price Prediction System
 
 ## Features
@@ -69,3 +70,6 @@ Change the SECRET_KEY in app.py before deploying to production!
 
 ## Support
 For issues or questions, contact the development team.
+=======
+# miniproject
+>>>>>>> 2de667cf7b55b8326d4d53fb38649432695b3ad7
