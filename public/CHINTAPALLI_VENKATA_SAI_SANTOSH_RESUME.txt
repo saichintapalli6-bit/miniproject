@@ -1,0 +1,58 @@
+CHINTAPALLI VENKATA SAI SANTOSH
+Hyderabad, Telangana, India | +91 63040 24574 | saichintapalli6@gmail.com
+linkedin.com/in/sai-santosh-chintapalli | github.com/saichintapalli6-bit
+
+PROFESSIONAL SUMMARY
+Highly motivated Master of Computer Applications (MCA) graduate, Full Stack Developer, and Machine Learning Engineer. Expert in designing robust backend systems (Python, Node.js), responsive user interfaces (React, Next.js), and predictive models (TensorFlow, Scikit-Learn). Experienced in blockchain deployment and data visualization (Power BI). Proven record of reducing application bottlenecks, optimizing database schemas, and streamlining data-driven decision pipelines.
+
+EDUCATION
+Master of Computer Applications (MCA) | 2023 - 2025
+State University Institution, India
+- CGPA: 8.8 / 10.0
+- Core Subjects: Advanced Data Structures, Design & Analysis of Algorithms, Machine Learning, Database Management Systems, Distributed Web Architectures.
+
+Bachelor of Science (B.Sc) in Computer Science, Mathematics & Physics | 2020 - 2023
+Affiliated Science College, India
+- CGPA: 9.2 / 10.0
+- Honors: Academic Merit Scholar.
+
+CORE TECHNICAL SKILLS
+- Programming Languages: Python, JavaScript, Java, C, SQL, HTML5, CSS3
+- Frameworks & Libraries: React.js, Next.js, Node.js, Express.js, Django, Flask, React Native, Redux
+- Machine Learning & Analytics: TensorFlow, Scikit-Learn, XGBoost, Pandas, NumPy, OpenCV, Power BI
+- Databases & Tools: MongoDB, MySQL, SQL Server, Git, GitHub, VS Code, Linux OS, Figma, Jupyter Notebooks
+
+PROFESSIONAL EXPERIENCE
+Power BI Analyst Intern | Advanced Analytics Corporation | June 2025 - August 2025
+- Designed and deployed interactive executive dashboards monitoring core business KPIs, handling datasets exceeding 10,000 transaction rows.
+- Automated Extract, Transform, Load (ETL) routines using Python scripts (Pandas and NumPy), reducing manual data cleansing efforts.
+- Wrote dynamic DAX expressions to compute business indicators and rolling multi-variable projections.
+- Partnered with database engineers to refactor SQL schemas, yielding a 45% reduction in dashboard loading latencies.
+
+Python Developer Intern | FutureWeb Technologies | December 2024 - February 2025
+- Built and optimized modular REST API endpoints using Flask and Django frameworks to support high-throughput applications.
+- Integrated trained Scikit-Learn ML classification pipelines into relational MySQL data routes.
+- Designed advanced database indexes and cached structures, improving execution speed of analytical operations by 30%.
+- Restructured internal script algorithms using efficient data structures to parse bulk logging datasets.
+
+KEY PROJECTS
+Multi-Level Authentication System
+- Built a secure role-based authorization gate using React, Node.js, and MongoDB, incorporating WebAuthn biometric integrations.
+- Implemented multi-factor authentication handshakes, maintaining active verification responses in less than 80ms.
+
+Smart Vehicle Procurement System
+- Developed a decentralized vehicle bidding ledger using Next.js, Django, PostgreSQL, and Solidity EVM smart contracts.
+- Formulated off-chain hashing pipelines to minimize smart contract interaction costs, cutting auditing cycles by 50%.
+
+Amphibian & Reptile Classifier
+- Programmed a deep learning CNN model using TensorFlow and Keras to classify nature species from image files.
+- Applied OpenCV filtering and achieved a 96.4% test classification accuracy with an inference delay under 120ms.
+
+Real Estate Price Prediction
+- Developed a spatial valuation regression model using XGBoost, Pandas, and FastAPI.
+- Visualized predictive valuations in Power BI, processing 100K+ housing logs with an R-squared validation score of 0.892.
+
+ACHIEVEMENTS
+- Awarded Best Design Presentation in the 2025 Academic Project Symposium.
+- Built a community-focused Student Portal handling 15,000 request syncs per minute under 300ms.
+- Recipient of the Academic Merit Scholarship from 2020 to 2023.

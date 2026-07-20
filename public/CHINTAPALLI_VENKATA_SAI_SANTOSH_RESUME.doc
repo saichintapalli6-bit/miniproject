@@ -1,0 +1,205 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<title>CHINTAPALLI VENKATA SAI SANTOSH RESUME</title>
+<!--[if gte mso 9]>
+<xml>
+<w:WordDocument>
+<w:View>Print</w:View>
+<w:Zoom>100</w:Zoom>
+<w:DoNotOptimizeForBrowser/>
+</w:WordDocument>
+</xml>
+<![endif]-->
+<style>
+body {
+    font-family: Arial, sans-serif;
+    color: #333333;
+    line-height: 1.35;
+    margin: 40px;
+    font-size: 10pt;
+}
+.name-header {
+    font-size: 18pt;
+    font-weight: bold;
+    color: #1a242b;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.contact-details {
+    font-size: 9pt;
+    color: #555555;
+    text-align: center;
+    margin-bottom: 3px;
+}
+.section-title {
+    font-size: 11pt;
+    font-weight: bold;
+    color: #0c64b4;
+    border-bottom: 1.5pt solid #0c64b4;
+    padding-bottom: 2px;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+.bullet-list {
+    margin-top: 3px;
+    margin-bottom: 8px;
+    padding-left: 20px;
+}
+.bullet-item {
+    margin-bottom: 3px;
+}
+.entry-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2px;
+}
+.entry-role {
+    font-weight: bold;
+    font-size: 10pt;
+    color: #222222;
+    text-align: left;
+    width: 70%;
+}
+.entry-date {
+    font-weight: bold;
+    font-size: 9pt;
+    color: #666666;
+    text-align: right;
+    width: 30%;
+}
+.entry-sub {
+    font-style: italic;
+    font-size: 9pt;
+    color: #0c64b4;
+    text-align: left;
+    margin-bottom: 4px;
+}
+.skill-category {
+    font-weight: bold;
+    color: #444444;
+}
+</style>
+</head>
+<body>
+
+<div class="name-header">CHINTAPALLI VENKATA SAI SANTOSH</div>
+<div class="contact-details">Hyderabad, Telangana, India  |  +91 63040 24574  |  saichintapalli6@gmail.com</div>
+<div class="contact-details">LinkedIn: linkedin.com/in/sai-santosh-chintapalli  |  GitHub: github.com/saichintapalli6-bit</div>
+
+<div class="section-title">Professional Summary</div>
+<p style="margin: 0; text-align: justify;">
+Highly motivated Master of Computer Applications (MCA) graduate, Full Stack Developer, and Machine Learning Engineer with active expertise in software engineering pipelines. Accomplished in backend development (Python, Node.js), modern frontend architectures (React, Next.js), and predictive models (TensorFlow, Scikit-Learn). Experienced in blockchain bidding ledgers, automated ETL pipelines, and executive dashboards (Power BI). Proven track record of optimizing SQL queries, pruning script runtime latencies, and implementing biometrics authentication systems.
+</p>
+
+<div class="section-title">Core Technical Skills</div>
+<table style="width: 100%; border-collapse: collapse; margin-bottom: 5px;">
+    <tr><td style="width: 25%; font-weight: bold; padding: 2px 0;">Programming Languages:</td><td style="width: 75%; padding: 2px 0;">Python, JavaScript, Java, C, SQL, HTML5, CSS3</td></tr>
+    <tr><td style="font-weight: bold; padding: 2px 0;">Frameworks & Libraries:</td><td style="padding: 2px 0;">React.js, Next.js, Node.js, Express.js, Django, Flask, React Native, Redux</td></tr>
+    <tr><td style="font-weight: bold; padding: 2px 0;">ML, Analytics & BI:</td><td style="padding: 2px 0;">TensorFlow, Scikit-Learn, XGBoost, Pandas, NumPy, OpenCV, Power BI</td></tr>
+    <tr><td style="font-weight: bold; padding: 2px 0;">Databases & System Tools:</td><td style="padding: 2px 0;">MongoDB, MySQL, SQL Server, Git, GitHub, VS Code, Linux OS, Figma, Jupyter</td></tr>
+</table>
+
+<div class="section-title">Professional Experience</div>
+
+<table class="entry-table">
+    <tr>
+        <td class="entry-role">Power BI Analyst Intern</td>
+        <td class="entry-date">June 2025 - August 2025</td>
+    </tr>
+</table>
+<div class="entry-sub">Advanced Analytics Corporation  |  Hyderabad, India</div>
+<ul class="bullet-list">
+    <li class="bullet-item">Designed and deployed interactive executive dashboards monitoring core business KPIs, handling datasets exceeding 10,000 transaction rows.</li>
+    <li class="bullet-item">Automated ETL routines using Python scripts (Pandas and NumPy), reducing manual data cleansing efforts and improving speed.</li>
+    <li class="bullet-item">Wrote dynamic DAX expressions to compute business indicators and rolling multi-variable projections.</li>
+    <li class="bullet-item">Partnered with database engineers to refactor SQL schemas, yielding a 45% reduction in dashboard loading latencies.</li>
+</ul>
+
+<table class="entry-table">
+    <tr>
+        <td class="entry-role">Python Developer Intern</td>
+        <td class="entry-date">December 2024 - February 2025</td>
+    </tr>
+</table>
+<div class="entry-sub">FutureWeb Technologies  |  Hyderabad, India</div>
+<ul class="bullet-list">
+    <li class="bullet-item">Developed and optimized modular REST API endpoints using Flask and Django frameworks to support high-throughput applications.</li>
+    <li class="bullet-item">Integrated trained Scikit-Learn ML classification pipelines into relational MySQL data routes.</li>
+    <li class="bullet-item">Designed advanced database indexes and cached structures, improving execution speed of analytical operations by 30%.</li>
+    <li class="bullet-item">Restructured internal script algorithms using efficient data structures to parse bulk logging datasets.</li>
+</ul>
+
+<div class="section-title">Key Projects & Core Portfolio</div>
+
+<table style="width: 100%; margin-bottom: 2px;">
+    <tr>
+        <td style="font-weight: bold; font-size: 10pt; text-align: left;">Multi-Level Authentication System</td>
+        <td style="font-style: italic; font-size: 8.5pt; color: #666666; text-align: right;">Tech: React, Node.js, Express, MongoDB, JWT, WebAuthn</td>
+    </tr>
+</table>
+<ul class="bullet-list" style="margin-bottom: 4px;">
+    <li class="bullet-item">Built secure role-based gate incorporating biometric credentials. Engineered MFA handshakes maintaining verification responses in under 80ms.</li>
+</ul>
+
+<table style="width: 100%; margin-bottom: 2px;">
+    <tr>
+        <td style="font-weight: bold; font-size: 10pt; text-align: left;">Smart Vehicle Procurement System</td>
+        <td style="font-style: italic; font-size: 8.5pt; color: #666666; text-align: right;">Tech: Next.js, Django, PostgreSQL, Solidity, EVM Ledger</td>
+    </tr>
+</table>
+<ul class="bullet-list" style="margin-bottom: 4px;">
+    <li class="bullet-item">Created decentralized bidding ledger. Formulated off-chain hashing pipelines to minimize EVM gas, cutting auditing cycles by 50%.</li>
+</ul>
+
+<table style="width: 100%; margin-bottom: 2px;">
+    <tr>
+        <td style="font-weight: bold; font-size: 10pt; text-align: left;">Amphibian & Reptile Classifier</td>
+        <td style="font-style: italic; font-size: 8.5pt; color: #666666; text-align: right;">Tech: Python, TensorFlow, Keras, Flask, OpenCV, NumPy</td>
+    </tr>
+</table>
+<ul class="bullet-list" style="margin-bottom: 4px;">
+    <li class="bullet-item">Programmed deep learning CNN achieving 96.4% test classification accuracy. Configured Flask REST API for image uploads with under 120ms latency.</li>
+</ul>
+
+<table style="width: 100%; margin-bottom: 2px;">
+    <tr>
+        <td style="font-weight: bold; font-size: 10pt; text-align: left;">Real Estate Price Prediction</td>
+        <td style="font-style: italic; font-size: 8.5pt; color: #666666; text-align: right;">Tech: Python, Scikit-Learn, XGBoost, Pandas, FastAPI, Power BI</td>
+    </tr>
+</table>
+<ul class="bullet-list">
+    <li class="bullet-item">Developed spatial valuation regression model. Integrated FastAPI endpoint serving inferences, achieving R2 validation score of 0.892.</li>
+</ul>
+
+<div class="section-title">Education</div>
+
+<table class="entry-table">
+    <tr>
+        <td class="entry-role">Master of Computer Applications (MCA)</td>
+        <td class="entry-date">2023 - 2025</td>
+    </tr>
+</table>
+<div style="font-size: 9pt; color: #555555; margin-bottom: 4px;">
+    State University Institution, India <span style="float: right; font-weight: bold; color: #333333;">CGPA: 8.8 / 10.0</span>
+</div>
+
+<table class="entry-table">
+    <tr>
+        <td class="entry-role">Bachelor of Science (B.Sc) in Computer Science</td>
+        <td class="entry-date">2020 - 2023</td>
+    </tr>
+</table>
+<div style="font-size: 9pt; color: #555555; margin-bottom: 4px;">
+    Affiliated Science College, India <span style="float: right; font-weight: bold; color: #333333;">CGPA: 9.2 / 10.0</span>
+</div>
+
+<div class="section-title">Key Honors & Extracurricular Achievements</div>
+<ul class="bullet-list">
+    <li class="bullet-item">Awarded Best Design Presentation in the 2025 Academic Project Symposium.</li>
+    <li class="bullet-item">Engineered community student database dashboard handling 15,000 Requests/min syncing in 300ms.</li>
+    <li class="bullet-item">Recipient of the Undergraduate Merit Academic Scholarship across three consecutive terms (2020 - 2023).</li>
+</ul>
+
+</body>
+</html>
